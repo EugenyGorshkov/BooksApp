@@ -1,10 +1,14 @@
+import { BooksComponent } from "./components/BooksComponent/BooksComponent"
+import { SearchComponent } from "./components/SearchComponent"
 
 
-const App:React.FC = () => {
+const App: React.FC = () => {
 
   return (
-    <div className="App">
-      <h1>Hello World</h1>
+    <div>
+      
+      <SearchComponent/>
+      <BooksComponent/>
     </div>
   )
 }
