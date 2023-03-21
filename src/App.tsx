@@ -6,7 +6,6 @@ const App: React.FC = () => {
 
   return (
     <div>
-      
       <SearchComponent/>
       <BooksComponent/>
     </div>
@@ -14,3 +13,8 @@ const App: React.FC = () => {
 }
 
 export default App
+
+// сделать каждый айтем книги стилизовть
+// посмотреть доки апи по поиску и сортировке
+// добавить кнопку загрузить еще
+// добавить ридми

@@ -5,7 +5,12 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'mainBg': "url('./src/img/bg-main.jpg')",
+      },
+    },
   },
   plugins: [],
+  
 }

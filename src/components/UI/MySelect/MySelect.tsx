@@ -10,7 +10,7 @@ export const MySelect: React.FC<MySelectProps> = ({
     options
 }) => {
     return (
-        <div className='flex'>
+        <div className='flex gap-5'>
             <p>{title}</p>
             <select name="" id="">
                 {options.map((el) => (

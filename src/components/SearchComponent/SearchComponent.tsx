@@ -3,27 +3,26 @@ import { MyInput } from "../UI/MyInput/MyInput";
 import { MySelect } from "../UI/MySelect/MySelect";
 
 export const SearchComponent: React.FC = () => {
-    const categories = [
-        {value: 'all'},
-        {value: 'art'},
-        {value: 'biography'},
-        {value: 'computers'},
-        {value: 'history'},
-        {value: 'medical'},
-        {value: 'poetry'},
-    ]
-    const sort = [
-        {value: 'relevance '},
-        {value: 'newest'},
-    ]
+  const categories = [
+    { value: "all" },
+    { value: "art" },
+    { value: "biography" },
+    { value: "computers" },
+    { value: "history" },
+    { value: "medical" },
+    { value: "poetry" },
+  ];
+  const sort = [{ value: "relevance " }, { value: "newest" }];
 
   return (
-    <div className="flex flex-col">
-      <h1>Search for books</h1>
-      <MyInput />
-      <div>
-        <MySelect title='Categories' options={categories}/>
-        <MySelect title='Sorted by' options={sort}/>
+    <div className="bg-mainBg bg-cover bg-center">
+      <div className="flex flex-col container mx-auto items-center gap-10 pt-10 pb-10">
+        <h1 className="text-7xl text-white">Search for books</h1>
+        <MyInput />
+        <div className="flex gap-5">
+          <MySelect title="Categories" options={categories} />
+          <MySelect title="Sorted by" options={sort} />
+        </div>
       </div>
     </div>
   );
