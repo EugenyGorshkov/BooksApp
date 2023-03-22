@@ -15,7 +15,6 @@ const booksSlice = createSlice({
   reducers: {
     booksAdd(state, action) {
       state.books = [...state.books, ...action.payload]
-      // console.log("action.payload:", action.payload);
     },
     newBooksQuerry(state, action) {
       resetState()

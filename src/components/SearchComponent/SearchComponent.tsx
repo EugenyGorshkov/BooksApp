@@ -32,17 +32,12 @@ export const SearchComponent: React.FC = ({}) => {
     value: string
   ) => {
     if (e.key === "Enter") {
-      if (value === "") {
-        return;
-      }
       dispatch(changeSearchQuerry(value));
     }
   };
 
   const handleOnClickStartSearch = (value: string) => {
-    if (value === "") {
-      return;
-    }
+    dispatch(changeSearchQuerry(value));
   };
 
   const handleOnChangeOptionSort = (
@@ -59,16 +54,6 @@ export const SearchComponent: React.FC = ({}) => {
     dispatch(changeCategoryQuerry(e.target.value));
   };
 
-  // ререндер при изменении строки поиска и типа сортировки
-  //   useEffect(() => {
-  //     getResource(
-  //       generateQuerryUrl(searchValue, sortedType, startIndexParam)
-  //     ).then((data) => {
-  //       dispatch(newBooksQuerry(data));
-  //       setStartIndexParam(startIndexParam + 30);
-  //     });
-  //     // console.log("startIndexParam", startIndexParam);
-  //   }, [searchValue, sortedType]);
 
   return (
     <div className="bg-mainBg bg-cover bg-center">

@@ -4,6 +4,7 @@ import {
   PAGINATION_START_INDEX,
   ORDER_BY,
   KEY,
+  SORT_CATEGORIES,
 } from "./../constants/api";
 /**
  * Отправляет запрос fetch
@@ -27,7 +28,6 @@ export const getApiResource = async (url: string): Promise<any> => {
     let message = "Unknown Error";
     if (error instanceof Error) message = error.message;
     reportError({ message });
-    // console.error('Could not fetch.', error.message);
     return false;
   }
 };
@@ -36,6 +36,7 @@ export const getApiResource = async (url: string): Promise<any> => {
  * Создает ссылку для запроса
  * @param  {String} serachValue - значение строки поиска
  * @param  {String} order - порядок отображения
+ * @param  {String} sortCategories - сортировка по категориям
  * @param  {String} index - индекс первого элемента
  *
  * @return {String} - строка для запроса
@@ -44,9 +45,13 @@ export const getApiResource = async (url: string): Promise<any> => {
 export const generateQuerryUrl = (
   serachValue: string,
   order: string,
+  sortCategories: string,
   index: number
 ): string => {
-  return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order}`;
+  if(sortCategories === 'all') {
+    return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order}`
+  }
+  return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue +'+'+ SORT_CATEGORIES + sortCategories + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order}`;
   // return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order + KEY}`;
 };
 

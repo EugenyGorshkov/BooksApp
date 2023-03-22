@@ -23,6 +23,7 @@ export const BooksComponent: React.FC = () => {
   const booksInState = useAppSelector((state) => state.bookReducer.books);
   const searchValue = useAppSelector((state) => state.searchReducer.search);
   const sortedType = useAppSelector((state) => state.searchReducer.sortedType);
+  const categoryType = useAppSelector((state) => state.searchReducer.catehory);
   const dispatch = useAppDispatch();
 
   const [books, setBooks] = useState<null | BookItemApi[]>(booksInState);
@@ -43,7 +44,7 @@ export const BooksComponent: React.FC = () => {
     const newStartIndexParam = startIndexParam + 30
     setStartIndexParam(newStartIndexParam);
     getResource(
-      generateQuerryUrl(searchValue, sortedType, newStartIndexParam)
+      generateQuerryUrl(searchValue, sortedType, categoryType ,newStartIndexParam)
     ).then((data) => {
       dispatch(booksAdd(data)); 
     });
@@ -51,27 +52,16 @@ export const BooksComponent: React.FC = () => {
   };
   console.log("startIndexParam", startIndexParam);
 
-  // рендер призаргузке страницы
+  // рендер при заргузке страницы и ререндер при изменении типа сортировки и строки поиска
   useEffect(() => {
     setStartIndexParam(0)
     getResource(
-      generateQuerryUrl(searchValue, sortedType, 0)
+      generateQuerryUrl(searchValue, sortedType, categoryType ,0)
     ).then((data) => {
       dispatch(newBooksQuerry(data));
     });
-  },[searchValue, sortedType])
+  },[searchValue, sortedType,categoryType])
   
-
-  // useEffect для console.log()
-//   useEffect(() => {
-//     console.log("books", books);
-//   }, [books]);
-
-//   useEffect(() => {
-//     console.log("startIndexParam", startIndexParam);
-//   }, [startIndexParam]);
-
-  // изменение стейта компонета при изменении редакс стейта
   useEffect(() => {
     setBooks(booksInState);
   }, [booksInState]);

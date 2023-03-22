@@ -7,7 +7,7 @@ interface SearchState {
 }
 
 const initialState: SearchState = {
-  search: "search terms",
+  search: "{search terms}",
   sortedType: "relevance",
   catehory: "all",
 };
