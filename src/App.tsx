@@ -1,20 +1,23 @@
-import { BooksComponent } from "./components/BooksComponent/BooksComponent"
-import { SearchComponent } from "./components/SearchComponent"
-
+import { Route, Routes } from "react-router";
+import { BookComponent } from "./components/BookComponent";
+import { BooksComponent } from "./components/BooksComponent/BooksComponent";
+import { SearchComponent } from "./components/SearchComponent";
 
 const App: React.FC = () => {
-
   return (
     <div>
-      <SearchComponent/>
-      <BooksComponent/>
+      <SearchComponent />
+      <Routes>
+        <Route path="/" element={<BooksComponent />} />
+        <Route path="/:id" element={<BookComponent />} />
+      </Routes>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 
-// сделать каждый айтем книги стилизовть
-// посмотреть доки апи по поиску и сортировке
-// добавить кнопку загрузить еще
+// стилизовть страницу книги
+// доделать сортировку
 // добавить ридми
+// доделать пагинацию

@@ -1,17 +1,16 @@
 import React from "react";
 import { BookItemApi } from "../BooksComponent";
+import { Link } from 'react-router-dom'
 
 interface BookItemProps {
   el: BookItemApi;
-  onClickHandler: () => void;
 }
 
-export const BookItem: React.FC<BookItemProps> = ({ el, onClickHandler }) => {
+export const BookItem: React.FC<BookItemProps> = ({ el }) => {
   return (
     <div
-      onClick={onClickHandler}
       className="bg-gray-200 hover:bg-gray-300 lg:w-[20%] md:w-[30%] sm:w-[40%] w-[100%] rounded-md border-solid border border-gray-500"
-    >
+    ><Link to={`/${el.id}`}>
       <div className="p-5 flex flex-col h-full">
         <div className="flex items-center justify-center">
           <img
@@ -32,6 +31,7 @@ export const BookItem: React.FC<BookItemProps> = ({ el, onClickHandler }) => {
           </p>
         </div>
       </div>
+      </Link>
     </div>
   );
 };

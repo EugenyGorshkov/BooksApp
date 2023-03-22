@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { MyLoader } from "../../components/UI/MyLoader";
 import { generateQuerryUrl, getApiResource } from "../../utils/network";
-import { BookItem } from "../BookItem";
 import { booksAdd, newBooksQuerry } from "../../store/reducers/bookReducer";
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { MyLoader } from "../../components/UI/MyLoader";
+import { BookItem } from "../BookItem";
 
 export interface BookItemApi {
   id: string;
@@ -22,8 +21,8 @@ export interface BookItemApi {
 
 export const BooksComponent: React.FC = () => {
   const booksInState = useAppSelector((state) => state.bookReducer.books);
-  const searchValue = useAppSelector((state) => state.bookReducer.search);
-  const sortedType = useAppSelector((state) => state.bookReducer.sortedType);
+  const searchValue = useAppSelector((state) => state.searchReducer.search);
+  const sortedType = useAppSelector((state) => state.searchReducer.sortedType);
   const dispatch = useAppDispatch();
 
   const [books, setBooks] = useState<null | BookItemApi[]>(booksInState);
@@ -35,51 +34,38 @@ export const BooksComponent: React.FC = () => {
     setLoading(true);
     const res = await getApiResource(url);
     setLoading(false);
-    console.log("res:", res);
     setFoundCounter(res.totalItems);
+    // console.log("res:", res);
     return await res.items;
   };
 
-  const onClickHandler = () => {
-    console.log("onClickHandler");
-  };
-
   const handleClickLoadMore = () => {
-    setStartIndexParam(startIndexParam + 40);
-    // console.log("startIndexParam", startIndexParam);
-
-    // const LOAD_MORE_QUERRY = LOAD_MORE + startIndexParam + KEY;
-    // console.log("LOAD_MORE_QUERRY", LOAD_MORE_QUERRY);
-
     getResource(
       generateQuerryUrl(searchValue, sortedType, startIndexParam)
     ).then((data) => {
       dispatch(booksAdd(data));
     });
+    console.log("startIndexParam", startIndexParam);
   };
 
   // рендер призаргузке страницы
+//   useEffect(() => {
+//     getResource(
+//       generateQuerryUrl(searchValue, sortedType, startIndexParam)
+//     ).then((data) => {
+//       dispatch(booksAdd(data));
+//     });
+//     setStartIndexParam(startIndexParam + 30);
+//   },[]);
   useEffect(() => {
-    getResource(
-      generateQuerryUrl(searchValue, sortedType, startIndexParam)
-    ).then((data) => {
-      dispatch(booksAdd(data));
-    });
-    setStartIndexParam(startIndexParam + 40);
-  }, []);
-
-  // ререндер при изменении строки поиска и типа сортировки
-  useEffect(() => {
-    setStartIndexParam(0);
     getResource(
       generateQuerryUrl(searchValue, sortedType, startIndexParam)
     ).then((data) => {
       dispatch(newBooksQuerry(data));
-      setStartIndexParam(startIndexParam + 40);
     });
-    console.log("searchValue", searchValue);
-  }, [searchValue, sortedType]);
-
+    setStartIndexParam(startIndexParam + 30);
+  },[searchValue,sortedType])
+  
 
   // useEffect для console.log()
 //   useEffect(() => {
@@ -101,7 +87,7 @@ export const BooksComponent: React.FC = () => {
       <div className="container mx-auto flex flex-wrap gap-5 justify-center mt-10 pl-5 pr-5">
         {books &&
           books.map((el: any) => (
-            <BookItem onClickHandler={onClickHandler} key={el.id} el={el} />
+            <BookItem key={el.etag} el={el} />
           ))}
       </div>
       {loading && <MyLoader />}

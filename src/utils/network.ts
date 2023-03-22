@@ -46,5 +46,8 @@ export const generateQuerryUrl = (
   order: string,
   index: number
 ): string => {
-  return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order + KEY}`;
+  return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order}`;
+  // return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order + KEY}`;
 };
+
+// return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order}`;
