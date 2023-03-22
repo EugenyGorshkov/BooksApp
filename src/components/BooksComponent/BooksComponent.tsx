@@ -35,36 +35,31 @@ export const BooksComponent: React.FC = () => {
     const res = await getApiResource(url);
     setLoading(false);
     setFoundCounter(res.totalItems);
-    // console.log("res:", res);
+    console.log("res:", res);
     return await res.items;
   };
 
   const handleClickLoadMore = () => {
+    const newStartIndexParam = startIndexParam + 30
+    setStartIndexParam(newStartIndexParam);
     getResource(
-      generateQuerryUrl(searchValue, sortedType, startIndexParam)
+      generateQuerryUrl(searchValue, sortedType, newStartIndexParam)
     ).then((data) => {
-      dispatch(booksAdd(data));
+      dispatch(booksAdd(data)); 
     });
-    console.log("startIndexParam", startIndexParam);
+    
   };
+  console.log("startIndexParam", startIndexParam);
 
   // рендер призаргузке страницы
-//   useEffect(() => {
-//     getResource(
-//       generateQuerryUrl(searchValue, sortedType, startIndexParam)
-//     ).then((data) => {
-//       dispatch(booksAdd(data));
-//     });
-//     setStartIndexParam(startIndexParam + 30);
-//   },[]);
   useEffect(() => {
+    setStartIndexParam(0)
     getResource(
-      generateQuerryUrl(searchValue, sortedType, startIndexParam)
+      generateQuerryUrl(searchValue, sortedType, 0)
     ).then((data) => {
       dispatch(newBooksQuerry(data));
     });
-    setStartIndexParam(startIndexParam + 30);
-  },[searchValue,sortedType])
+  },[searchValue, sortedType])
   
 
   // useEffect для console.log()
