@@ -56,7 +56,7 @@ export const SearchComponent: React.FC = ({}) => {
 
 
   return (
-    <div className="bg-mainBg bg-cover bg-center">
+    <div className={classNames("bg-cover bg-center", styles.ibg)}>
       <div className="flex flex-col container mx-auto items-center gap-10 pt-10 pb-10">
         <h1
           className={classNames(

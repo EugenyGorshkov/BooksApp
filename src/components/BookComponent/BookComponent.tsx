@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FULL_DATA, INFO_BOOK } from "../../constants/api";
-import { getApiResource } from "../../utils/network";
+import { changeHTTP, getApiResource } from "../../utils/network";
 
 import arrow from '../../assets/chevron-left.png'
 
@@ -17,12 +17,11 @@ export const BookComponent: React.FC = () => {
   useEffect(() => {
     (async () => {
       const res = await getApiResource(INFO_BOOK + id + FULL_DATA);
-      console.log(res);
       setTitle(res.volumeInfo.title);
       setCategory(res.volumeInfo.categories);
       setAuthors(res.volumeInfo.authors);
       setDescription(res.volumeInfo.description);
-      setImage(res.volumeInfo.imageLinks.thumbnail);
+      setImage(changeHTTP(res.volumeInfo.imageLinks.thumbnail));
     })();
   }, []);
 

@@ -9,9 +9,6 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'sans-serif']
       },
-      backgroundImage: {
-        'mainBg': "url('./src/img/bg-main.jpg')",
-      },
     },
   },
   plugins: [],

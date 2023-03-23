@@ -5,7 +5,21 @@ import {
   ORDER_BY,
   KEY,
   SORT_CATEGORIES,
+  HTTP,
 } from "./../constants/api";
+/** 
+ * Изменяет url с HTTP на HTTPS
+ * @param {String} url - url для изменения
+ * @returns {String} - url с HTTPS
+*/
+
+export const changeHTTP = (url:string) => {
+  const result = url ? url.replace(HTTP, HTTPS) : url
+
+  return result
+}
+
+
 /**
  * Отправляет запрос fetch
  * @param {String} url - url для запроса
@@ -49,10 +63,7 @@ export const generateQuerryUrl = (
   index: number
 ): string => {
   if(sortCategories === 'all') {
-    return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order}`
+    return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order +KEY}`
   }
-  return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue +'+'+ SORT_CATEGORIES + sortCategories + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order}`;
-  // return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order + KEY}`;
+  return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue +'+'+ SORT_CATEGORIES + sortCategories + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order +KEY}`;
 };
-
-// return `${HTTPS + GOOGLE_API_ROOT + SEARCH + serachValue + MAX_ITEM_QUERRY + PAGINATION_START_INDEX + index + ORDER_BY + order}`;

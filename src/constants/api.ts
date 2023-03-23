@@ -1,5 +1,6 @@
 // common
 export const HTTPS = 'https://'
+export const HTTP = 'http://';
 
 //api
 export const GOOGLE_API_ROOT = 'www.googleapis.com/books/v1/volumes'

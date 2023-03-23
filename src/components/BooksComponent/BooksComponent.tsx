@@ -36,7 +36,6 @@ export const BooksComponent: React.FC = () => {
     const res = await getApiResource(url);
     setLoading(false);
     setFoundCounter(res.totalItems);
-    console.log("res:", res);
     return await res.items;
   };
 
@@ -50,7 +49,6 @@ export const BooksComponent: React.FC = () => {
     });
     
   };
-  console.log("startIndexParam", startIndexParam);
 
   // рендер при заргузке страницы и ререндер при изменении типа сортировки и строки поиска
   useEffect(() => {
