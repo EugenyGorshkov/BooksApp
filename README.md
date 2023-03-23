@@ -1,4 +1,9 @@
 # BooksApp
-
-npm install - install packages
-npm run dev - run app on localhost
+```bash
+npm install
+```
+install packages
+```bash
+npm run dev
+```
+run app on localhost
