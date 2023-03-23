@@ -5,10 +5,11 @@ import './index.css'
 import { store } from './store/store'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom';
+import { REPO_NAME } from './constants/reponame'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename={`/${REPO_NAME}/`}>
         <App />
       </BrowserRouter>
     </Provider>
