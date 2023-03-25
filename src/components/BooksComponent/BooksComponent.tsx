@@ -74,8 +74,8 @@ export const BooksComponent: React.FC = () => {
           ))}
       </div>
       {loading && <MyLoader />}
-      <div className="mt-10 mb-10 flex justify-center">
-        <button onClick={handleClickLoadMore}>load more</button>
+      <div className="mt-10 mb-10 flex justify-center p-3 border border-solid border-black">
+        <button onClick={handleClickLoadMore} className='uppercase'>load more</button>
       </div>
     </div>
   );
